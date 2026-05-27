@@ -1,0 +1,51 @@
+[project]
+name = "office-assistant"
+version = "0.1.0"
+description = "全能办公助手 - All-in-One Office Assistant Agent"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Office Assistant Team" }]
+
+dependencies = [
+    "typer[all]>=0.15",
+    "rich>=13.0",
+    "anthropic>=0.67",
+    "openai>=1.100",
+    "ollama>=0.4",
+    "faster-whisper>=1.0",
+    "pandas>=2.2",
+    "openpyxl>=3.1",
+    "mail-parser>=3.15",
+    "pydantic>=2.0",
+    "pyyaml>=6.0",
+    "python-dotenv>=1.0",
+    "pathvalidate>=3.2",
+    "chardet>=5.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-mock>=3.14",
+    "ruff>=0.8",
+    "mypy>=1.13",
+]
+
+[project.scripts]
+office-assistant = "office_assistant.cli.main:main"
+oa = "office_assistant.cli.main:main"
+
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.mypy]
+python_version = "3.11"
+strict = true

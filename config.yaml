@@ -1,0 +1,70 @@
+llm:
+  default_backend: claude
+  router_backend: null          # 可单独指定路由用后端，null=复用default
+  router_model: null            # 路由专用模型，null=复用后端默认模型
+
+  backends:
+    claude:
+      api_key: ${ANTHROPIC_API_KEY}
+      model: claude-sonnet-4-20250514
+      max_tokens: 8192
+      temperature: 0.7
+
+    openai:
+      api_key: ${OPENAI_API_KEY}
+      base_url: https://api.openai.com/v1
+      model: gpt-4o
+      max_tokens: 8192
+      temperature: 0.7
+
+    ollama:
+      host: http://localhost:11434
+      model: qwen3:14b
+      max_tokens: 4096
+      temperature: 0.7
+      keep_alive: 5m
+
+whisper:
+  engine: faster-whisper
+  model_size: medium
+  device: auto
+  compute_type: int8
+  language: auto
+  beam_size: 5
+  vad_filter: true
+
+skills:
+  meeting:
+    default_language: zh
+    auto_todo_extraction: true
+    output_format: markdown
+
+  report:
+    default_style: professional
+    default_type: weekly
+    section_templates:
+      - summary
+      - achievements
+      - challenges
+      - next_steps
+
+  spreadsheet:
+    default_output_format: xlsx
+    encoding: utf-8
+    max_preview_rows: 20
+
+  email:
+    reply_tone: professional
+    classification_categories:
+      - 紧急
+      - 会议邀请
+      - 工作汇报
+      - 一般咨询
+      - 垃圾邮件
+      - 其他
+
+output:
+  format: rich
+  color: true
+  save_output: true
+  output_dir: ./output
